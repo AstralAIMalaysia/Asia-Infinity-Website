@@ -16,7 +16,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Card, CardContent } from "@/components/ui/card";
-import { Mail, MapPin, Phone, Clock, Send, Loader2 } from "lucide-react";
+import { Mail, MapPin, Phone, Send, Loader2 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -87,7 +87,7 @@ export default function Contact() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative h-[400px] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[400px] flex items-center justify-center overflow-hidden pt-20">
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920"
@@ -116,109 +116,62 @@ export default function Contact() {
       {/* Contact Form & Info Section */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            {/* Contact Information Cards */}
-            <div className="lg:col-span-1 space-y-6">
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-              >
-                <Card className="border-l-4 border-l-primary">
-                  <CardContent className="p-6">
-                    <div className="flex items-start space-x-4">
-                      <div className="bg-primary/10 p-3 rounded-lg">
-                        <MapPin className="h-6 w-6 text-primary" />
-                      </div>
-                      <div>
-                        <h3 className="font-bold text-lg mb-2">Our Location</h3>
-                        <p className="text-sm text-muted-foreground">
-                          No. 8-3, Jalan Puteri 4/2, Bandar Puteri, 47100 Puchong, Selangor D.E
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Contact Information */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="space-y-8"
+            >
+              <div>
+                <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
+                  Get in touch
+                </h2>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  If you have any questions regarding our Services or need help, please fill out the form here. We do our best to respond within 1 business day.
+                </p>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Card className="border-l-4 border-l-primary">
-                  <CardContent className="p-6">
-                    <div className="flex items-start space-x-4">
-                      <div className="bg-primary/10 p-3 rounded-lg">
-                        <Phone className="h-6 w-6 text-primary" />
-                      </div>
-                      <div>
-                        <h3 className="font-bold text-lg mb-2">Phone</h3>
-                        <a
-                          href="tel:+60173958905"
-                          className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                        >
-                          +6 017 - 3958 905
-                        </a>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
+              <div className="space-y-6 pt-4">
+                <div className="flex items-start space-x-4">
+                  <Mail className="h-6 w-6 mt-1 flex-shrink-0 text-foreground" />
+                  <div>
+                    <div className="font-semibold text-base mb-1">Email</div>
+                    <a
+                      href="mailto:shipping@asiainfinitysolutions.com"
+                      className="text-muted-foreground hover:text-primary transition-colors break-all"
+                    >
+                      shipping@asiainfinitysolutions.com
+                    </a>
+                  </div>
+                </div>
 
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                viewport={{ once: true }}
-              >
-                <Card className="border-l-4 border-l-primary">
-                  <CardContent className="p-6">
-                    <div className="flex items-start space-x-4">
-                      <div className="bg-primary/10 p-3 rounded-lg">
-                        <Mail className="h-6 w-6 text-primary" />
-                      </div>
-                      <div>
-                        <h3 className="font-bold text-lg mb-2">Email</h3>
-                        <a
-                          href="mailto:shipping@asiainfinitysolutions.com"
-                          className="text-sm text-muted-foreground hover:text-primary transition-colors break-all"
-                        >
-                          shipping@asiainfinitysolutions.com
-                        </a>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
+                <div className="flex items-start space-x-4">
+                  <Phone className="h-6 w-6 mt-1 flex-shrink-0 text-foreground" />
+                  <div>
+                    <div className="font-semibold text-base mb-1">Phone</div>
+                    <a
+                      href="tel:+60173958905"
+                      className="text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      +6 017 - 3958 905
+                    </a>
+                  </div>
+                </div>
 
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                viewport={{ once: true }}
-              >
-                <Card className="border-l-4 border-l-primary">
-                  <CardContent className="p-6">
-                    <div className="flex items-start space-x-4">
-                      <div className="bg-primary/10 p-3 rounded-lg">
-                        <Clock className="h-6 w-6 text-primary" />
-                      </div>
-                      <div>
-                        <h3 className="font-bold text-lg mb-2">Business Hours</h3>
-                        <p className="text-sm text-muted-foreground">
-                          Monday - Sunday
-                          <br />
-                          9:00 AM - 6:00 PM
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            </div>
+                <div className="flex items-start space-x-4">
+                  <MapPin className="h-6 w-6 mt-1 flex-shrink-0 text-foreground" />
+                  <div>
+                    <div className="font-semibold text-base mb-1">Address</div>
+                    <p className="text-muted-foreground">
+                      No. 8-3, Jalan Puteri 4/2, Bandar Puteri, 47100 Puchong, Selangor D.E
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
 
             {/* Contact Form */}
             <motion.div
@@ -226,7 +179,6 @@ export default function Contact() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="lg:col-span-2"
             >
               <Card>
                 <CardContent className="p-8">

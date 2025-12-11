@@ -15,7 +15,7 @@ export const emailOtp = Email({
       // Example using a generic email service endpoint:
       const emailServiceUrl = process.env.EMAIL_SERVICE_URL;
       const emailApiKey = process.env.EMAIL_API_KEY;
-      const appName = process.env.APP_NAME || "Infinity Modern";
+      const appName = process.env.APP_NAME || "Asia Infinity";
 
       if (!emailServiceUrl || !emailApiKey) {
         throw new Error("Email service not configured. Please set EMAIL_SERVICE_URL and EMAIL_API_KEY environment variables.");
