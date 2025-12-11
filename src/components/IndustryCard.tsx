@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
+import Lenis from "lenis";
 
 interface IndustryCardProps {
   name: string;
