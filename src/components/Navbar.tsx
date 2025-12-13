@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, Phone, ChevronDown, Moon, Sun } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router";
 import { motion, AnimatePresence } from "framer-motion";
 import { useQuery } from "convex/react";
@@ -24,6 +24,8 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const services = useQuery(api.services.list);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLAnchorElement>(null);
   
   // Only apply transparent navbar on home page
   const isHomePage = location.pathname === "/";
@@ -110,13 +112,17 @@ export default function Navbar() {
             ))}
             
             {/* Services Dropdown with Animation */}
-            <div 
-              className="relative"
-              onMouseEnter={() => setIsServicesOpen(true)}
-              onMouseLeave={() => setIsServicesOpen(false)}
-            >
+            <div className="relative inline-block">
               <Link
+                ref={buttonRef}
                 to="/services"
+                onMouseEnter={() => setIsServicesOpen(true)}
+                onMouseLeave={(e) => {
+                  const relatedTarget = e.relatedTarget as HTMLElement;
+                  if (!relatedTarget || !dropdownRef.current?.contains(relatedTarget)) {
+                    setIsServicesOpen(false);
+                  }
+                }}
                 className={`text-base font-bold transition-colors hover:text-primary flex items-center gap-1.5 px-5 py-2.5 rounded-md ${
                   isTransparent ? "text-white drop-shadow-lg" : ""
                 }`}
@@ -126,21 +132,26 @@ export default function Navbar() {
                 <ChevronDown className="h-5 w-5" />
               </Link>
               
-              <AnimatePresence>
-                {isServicesOpen && (
+              {isServicesOpen && (
+                <div
+                  ref={dropdownRef}
+                  className="absolute top-full left-0 pt-2 z-50"
+                  onMouseEnter={() => setIsServicesOpen(true)}
+                  onMouseLeave={(e) => {
+                    const relatedTarget = e.relatedTarget as HTMLElement;
+                    if (!relatedTarget || !buttonRef.current?.contains(relatedTarget)) {
+                      setIsServicesOpen(false);
+                    }
+                  }}
+                >
                   <motion.div
                     initial={{ opacity: 0, scale: 0.85, y: 10 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.85, y: 10 }}
                     transition={transition}
-                    className="absolute top-full left-0 mt-2 w-[350px] bg-background border rounded-lg shadow-xl overflow-hidden"
+                    className="w-[350px] bg-background border rounded-lg shadow-xl overflow-hidden"
                   >
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.1 }}
-                      className="p-2"
-                    >
+                    <div className="p-2">
                       {services?.map((service) => (
                         <Link
                           key={service._id}
@@ -153,10 +164,10 @@ export default function Navbar() {
                           </div>
                         </Link>
                       ))}
-                    </motion.div>
+                    </div>
                   </motion.div>
-                )}
-              </AnimatePresence>
+                </div>
+              )}
             </div>
 
             <Button
